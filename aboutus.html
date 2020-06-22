@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>VeGo</title>
+</head>
+<style>
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 0;
+      }
+      
+      html {
+        box-sizing: border-box;
+      }
+      
+      *, *:before, *:after {
+        box-sizing: inherit;
+      }
+      
+      .column {
+        float: left;
+        width: 33.3%;
+        margin-bottom: 16px;
+        padding: 0 8px;
+      }
+      
+      .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        margin: 8px;
+      }
+      
+      .about-section {
+        padding: 50px;
+        text-align: center;
+        background-color: #474e5d;
+        color: white;
+      }
+      
+      .container {
+        padding: 0 16px;
+      }
+      
+      .container::after, .row::after {
+        content: "";
+        clear: both;
+        display: table;
+      }
+      
+      .title {
+        color: grey;
+      }
+      
+      .button {
+        border: none;
+        outline: 0;
+        display: inline-block;
+        padding: 8px;
+        color: white;
+        background-color: #000;
+        text-align: center;
+        cursor: pointer;
+        width: 100%;
+      }
+      
+      .button:hover {
+        background-color: #555;
+      }
+      
+      @media screen and (max-width: 650px) {
+        .column {
+          width: 100%;
+          display: block;
+        }
+      }
+</style>
+<!-- Sidebar -->
+<div class="w3-sidebar w3-bar-block w3-animate-left" style="display:none;z-index:5;width:80%;" id="mySidebar">
+	<button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Close &times;</button>
+	<a href="#" class="w3-bar-item w3-button bg-dark text-white">Hello , User</a>
+
+	<a href="index.html" class="w3-bar-item w3-button">Home</a>
+	<!---<a href="#" class="w3-bar-item w3-button">Your Orders </a> !-->
+
+	<div class="dropdown-divider"></div>
+
+	<a href="emergencyservice.html" class="w3-bar-item w3-button">Emergency Service</a>
+
+	<a href="comparecars.html" class="w3-bar-item w3-button">Compare Vehicles</a>
+	<a href="servicing.html" class="w3-bar-item w3-button">Vehicle Servicing</a>
+	<a href="ondoorservice.html" class="w3-bar-item w3-button">On-Door-Service</a>
+
+	<a href="index.html" class="w3-bar-item w3-button">Garages</a>
+	<div class="dropdown-divider"></div>
+	<a href="registergarage.html" class="w3-bar-item w3-button">Work With Us</a>
+
+	<div class="dropdown-divider"></div>
+
+	<!-- <a href="#" class="w3-bar-item w3-button">Your Account</a> !-->
+	<a href="register.html" class="w3-bar-item w3-button">Login/Signup</a>
+	<a href="aboutus.html" class="w3-bar-item w3-button">Contact Us</a>
+
+
+</div>
+
+<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+	<button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" onclick="w3_open()"
+		aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<a class="navbar-brand" href="index.html">
+		<img src="assets/images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+		VeGo
+	</a>
+	<div class="collapse navbar-collapse">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item active">
+				<a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+			</li>
+
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="index.html" id="navbarDropdown" role="button" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false">
+					Services
+				</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="emergencyservice.html">Emergency Service</a>
+					<a class="dropdown-item" href="comparecars.html">Compare Vehicles</a>
+					<a class="dropdown-item" href="ondoorservice.html">On-Door-Services</a>
+					<a class="dropdown-item" href="ondoorservice.html">Explore Garage & Shops Near You..</a>
+
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="registergarage.html">Work With Us</a>
+				</div>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="aboutus.html">About Us</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="aboutus.html">Contact Us</a>
+			</li>
+
+		</ul>
+
+	</div>
+
+	<form class="form-inline my-2 my-lg-0 d-flex">
+		<div class="p-2">
+			<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+		</div>
+
+		<button class="btn btn-danger" type="submit">Search</button>
+
+	</form>
+</nav>
+
+<body>
+
+    
+<div class="about-section">
+    <h1>About Us Page</h1>
+    <p>Some text about who we are and what we do.</p>
+    <p>Resize the browser window to see that this page is responsive by the way.</p>
+  </div>
+  
+  <h2 style="text-align:center">Our Team</h2>
+  <div class="row">
+    <div class="column">
+      <div class="card">
+        <img src="assets/images/black.png" alt="Jane" style="width:100%">
+        <div class="container">
+          <h2>Kunal Pandharkar</h2>
+          <p class="title">CEO & Founder</p>
+          <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+          <p>jane@example.com</p>
+          <p><button class="button">Contact</button></p>
+        </div>
+      </div>
+    </div>
+  
+    <div class="column">
+      <div class="card">
+        <img src="assets/images/black.png" alt="Mike" style="width:100%">
+        <div class="container">
+          <h2>Chaittnya Shinde</h2>
+          <p class="title">CEO & Developer</p>
+          <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+          <p>mike@example.com</p>
+          <p><button class="button">Contact</button></p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="column">
+      <div class="card">
+        <img src="assets/images/black.png" alt="John" style="width:100%">
+        <div class="container">
+          <h2>Pawan Lahoti</h2>
+          <p class="title">Business Guide</p>
+          <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+          <p>john@example.com</p>
+          <p><button class="button">Contact</button></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+    <!-- Page Content -->
+    <div class="w3-overlay w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+<script>
+    function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("myOverlay").style.display = "block";
+    }
+
+    function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("myOverlay").style.display = "none";
+    }
+
+</script>
+
+</html>
