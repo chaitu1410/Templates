@@ -1,0 +1,789 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>VeGo</title>
+</head>
+
+<style>
+    .card-horizontal {
+        display: flex;
+        flex: 1 1 auto;
+    }
+
+    .hide {
+        display: none;
+    }
+
+    .clear {
+        float: none;
+        clear: both;
+    }
+
+    .rating {
+        width: 90px;
+        unicode-bidi: bidi-override;
+        direction: rtl;
+        text-align: center;
+        position: relative;
+    }
+
+    .rating>label {
+
+        display: inline;
+        padding: 1;
+        margin: 0;
+        position: relative;
+
+        cursor: pointer;
+        color: #000;
+    }
+
+    .rating>label:hover,
+    .rating>label:hover~label,
+    .rating>input.radio-btn:checked~label {
+        color: transparent;
+    }
+
+    .rating>label:hover:before,
+    .rating>label:hover~label:before,
+    .rating>input.radio-btn:checked~label:before,
+    .rating>input.radio-btn:checked~label:before {
+        content: "\2605";
+        position: absolute;
+        left: 0;
+        color: #FFD700;
+    }
+
+    :root {
+        --input-padding-x: 1.5rem;
+        --input-padding-y: .75rem;
+    }
+
+    body {
+        background: #ff00dd;
+        background: linear-gradient(to right, #5e0daa, #0f43ec);
+    }
+
+    .card-signin {
+        border: 0;
+        border-radius: 1rem;
+        box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+
+    .card-signin .card-title {
+        margin-bottom: 2rem;
+        font-weight: 300;
+        font-size: 1.5rem;
+    }
+
+    .card-signin .card-img-left {
+        width: 45%;
+        /* Link to your background image using in the property below! */
+        background: scroll center url('https://source.unsplash.com/WEQbe2jBg40/414x512');
+        background-size: cover;
+    }
+
+    .card-signin .card-body {
+        padding: 2rem;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        font-size: 16px;
+        color: #2c2c2c;
+    }
+
+    body a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    .header__btn {
+        transition-property: all;
+        transition-duration: 0.2s;
+        transition-timing-function: linear;
+        transition-delay: 0s;
+        padding: 10px 20px;
+        display: inline-block;
+        margin-right: 10px;
+        background-color: #fff;
+        border: 1px solid #2c2c2c;
+        border-radius: 3px;
+        cursor: pointer;
+        outline: none;
+    }
+
+    .header__btn:last-child {
+        margin-right: 0;
+    }
+
+    .header__btn:hover,
+    .header__btn.js-active {
+        color: #fff;
+        background-color: #2c2c2c;
+    }
+
+    .header {
+        max-width: 600px;
+        margin: 50px auto;
+        text-align: center;
+    }
+
+    .header__title {
+        margin-bottom: 30px;
+        font-size: 2.1rem;
+    }
+
+    .content {
+        width: 95%;
+        margin: 0 auto 50px;
+    }
+
+    .content__title {
+        margin-bottom: 40px;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .content__title--m-sm {
+        margin-bottom: 10px;
+    }
+
+    .multisteps-form__progress {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+    }
+
+    .multisteps-form__progress-btn {
+        transition-property: all;
+        transition-duration: 0.15s;
+        transition-timing-function: linear;
+        transition-delay: 0s;
+        position: relative;
+        padding-top: 20px;
+        color: rgba(108, 117, 125, 0.7);
+        text-indent: -9999px;
+        border: none;
+        background-color: transparent;
+        outline: none !important;
+        cursor: pointer;
+    }
+
+    @media (min-width: 500px) {
+        .multisteps-form__progress-btn {
+            text-indent: 0;
+        }
+    }
+
+    .multisteps-form__progress-btn:before {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        display: block;
+        width: 13px;
+        height: 13px;
+        content: '';
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+        transition: all 0.15s linear 0s, -webkit-transform 0.15s cubic-bezier(0.05, 1.09, 0.16, 1.4) 0s;
+        transition: all 0.15s linear 0s, transform 0.15s cubic-bezier(0.05, 1.09, 0.16, 1.4) 0s;
+        transition: all 0.15s linear 0s, transform 0.15s cubic-bezier(0.05, 1.09, 0.16, 1.4) 0s, -webkit-transform 0.15s cubic-bezier(0.05, 1.09, 0.16, 1.4) 0s;
+        border: 2px solid currentColor;
+        border-radius: 50%;
+        background-color: #fff;
+        box-sizing: border-box;
+        z-index: 3;
+    }
+
+    .multisteps-form__progress-btn:after {
+        position: absolute;
+        top: 5px;
+        left: calc(-50% - 13px / 2);
+        transition-property: all;
+        transition-duration: 0.15s;
+        transition-timing-function: linear;
+        transition-delay: 0s;
+        display: block;
+        width: 100%;
+        height: 2px;
+        content: '';
+        background-color: currentColor;
+        z-index: 1;
+    }
+
+    .multisteps-form__progress-btn:first-child:after {
+        display: none;
+    }
+
+    .multisteps-form__progress-btn.js-active {
+        color: #28f10d;
+    }
+
+    .multisteps-form__progress-btn.js-active:before {
+        -webkit-transform: translateX(-50%) scale(1.2);
+        transform: translateX(-50%) scale(1.2);
+        background-color: currentColor;
+    }
+
+    .multisteps-form__form {
+        position: relative;
+    }
+
+    .multisteps-form__panel {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 0;
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .multisteps-form__panel.js-active {
+        height: auto;
+        opacity: 1;
+        visibility: visible;
+    }
+
+
+    .multisteps-form__panel[data-animation="fadeIn"].js-active {
+        transition-property: all;
+        transition-duration: 0.3s;
+        transition-timing-function: linear;
+        transition-delay: 0s;
+    }
+</style>
+<!-- Sidebar -->
+<div class="w3-sidebar w3-bar-block w3-animate-left" style="display:none;z-index:5;width:80%;" id="mySidebar">
+    <button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Close &times;</button>
+    <a href="#" class="w3-bar-item w3-button bg-dark text-white">Hello , User</a>
+
+    <a href="index.html" class="w3-bar-item w3-button">Home</a>
+    <!---<a href="#" class="w3-bar-item w3-button">Your Orders </a> !-->
+
+    <div class="dropdown-divider"></div>
+
+    <a href="#" class="w3-bar-item w3-button">Emergency Service</a>
+    <a class="w3-bar-item w3-button" href="comparecars.html">Compare Vehicles</a>
+    <a class="w3-bar-item w3-button" href="#">Vehicle Servicing</a>
+    <a class="w3-bar-item w3-button" href="#">On-Door-Service</a>
+
+    <a href="#" class="w3-bar-item w3-button">Garages</a>
+    <div class="dropdown-divider"></div>
+    <a href="registergarage.html" class="w3-bar-item w3-button">Work With Us</a>
+
+    <div class="dropdown-divider"></div>
+
+    <!-- <a href="#" class="w3-bar-item w3-button">Your Account</a> !-->
+    <a href="register.html" class="w3-bar-item w3-button">Login/Signup</a>
+    <a href="#" class="w3-bar-item w3-button">Contact Us</a>
+
+
+</div>
+
+<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" onclick="w3_open()"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <a class="navbar-brand" href="#">
+        <img src="assets/images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        VeGo
+    </a>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Services
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Emergency Service</a>
+                    <a class="dropdown-item" href="#">Compare Vehicles</a>
+                    <a class="dropdown-item" href="#">On-Door-Services</a>
+                    <a class="dropdown-item" href="#">Explore Garage & Shops Near You..</a>
+
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Work With Us</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">About Us</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Contact Us</a>
+            </li>
+
+        </ul>
+
+    </div>
+
+    <form class="form-inline my-2 my-lg-0 d-flex">
+        <div class="p-2">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        </div>
+
+        <button class="btn btn-danger" type="submit">Search</button>
+
+    </form>
+</nav>
+
+<body>
+
+
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Hello kunal !</strong> by using this you will get your vehicle repaired on-the-spot.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+
+<br>
+    <!--PEN CONTENT     -->
+    <div class="content">
+        <!--content inner-->
+
+        <div class="container overflow-hidden">
+            <!--multisteps-form-->
+            <div class="multisteps-form">
+                <!--progress bar-->
+                <div class="row">
+                    <div class="col-12 col-lg-8 ml-auto mr-auto mb-4">
+                        <div class="multisteps-form__progress">
+                            <button class="multisteps-form__progress-btn js-active" type="button"
+                                title="User Info">Select Vehicle
+                                </button>
+                            <button class="multisteps-form__progress-btn" type="button" title="Address">Select
+                                Problem</button>
+                            <button class="multisteps-form__progress-btn" type="button" title="Order Info">Select Location
+                            </button>
+                            <button class="multisteps-form__progress-btn" type="button" title="Comments">Select Garage
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!--form panels-->
+                <div class="row">
+                    <div class="col-12 col-lg-8 m-auto">
+                        <form class="multisteps-form__form">
+                            <!--single form panel-->
+                            <div class="multisteps-form__panel shadow p-4 rounded bg-white js-active"
+                                data-animation="scaleIn">
+                                <h3 class="multisteps-form__title">Select Your Vehicle</h3>
+                                <div class="multisteps-form__content">
+                                    <div class="form-row mt-4">
+                                        <div class="col">
+                                            <input class="multisteps-form__input form-control" type="text"
+                                                placeholder="Enter Your Vehicle Name" />
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <small class="form-text text-muted">
+                                        <p>In Case, you dont know the vehicle name just Enter
+                                            <strong>2-wheeler,3-wheeler,4-wheeler or others</strong>.
+                                        </p>
+                                    </small>
+                                    <div class="button-row d-flex mt-4">
+                                        <button class="btn btn-primary ml-auto js-btn-next" type="button"
+                                            title="Next">Next</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--single form panel-->
+                            <div class="multisteps-form__panel shadow p-4 rounded bg-white" data-animation="scaleIn">
+                                <h3 class="multisteps-form__title">Select What happened to your vehicle</h3>
+                                <div class="multisteps-form__content">
+                                    <div class="form-row mt-4">
+
+                                        <small>Fixed Problems</small>
+                                        <select class="multisteps-form__select form-control">
+                                            <option selected="selected">Problem..</option>
+                                            <option>...</option>
+                                        </select>
+                                        <br><br>
+
+                                        <small>Describe the problem</small>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                            placeholder="you can keep this empty."></textarea>
+
+                                        <p class="font-weight-bold pt-4">In Case, if you dont know what happened to your
+                                            vehicle , select this checkbox.</p>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                            <label class="custom-control-label" for="customCheck1">don't know what
+                                                happened</label>
+                                        </div>
+                                    </div>
+
+                                    <hr>
+                                    <div class="button-row d-flex mt-4">
+                                        <button class="btn btn-primary js-btn-prev" type="button"
+                                            title="Prev">Prev</button>
+                                        <button class="btn btn-primary ml-auto js-btn-next" type="button"
+                                            title="Next">Next</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--single form panel-->
+                            <div class="multisteps-form__panel shadow p-4 rounded bg-white" data-animation="scaleIn">
+                                <h3 class="multisteps-form__title">Select Your Location</h3>
+                                <div class="multisteps-form__content">
+
+
+                                    <form class="form-inline">
+                                        <div class="p-2">
+                                            <input class="form-control mr-sm-2" type="search" placeholder="Search"
+                                                aria-label="Search">
+                                        </div>
+
+                                        &nbsp; <button class="btn btn-danger" type="submit"><i class="fa fa-check"
+                                                aria-hidden="true"></i> Auto Detect</button>
+
+                                    </form>
+                                    <div class="row">
+                                        <div class="button-row d-flex mt-4 col-12">
+                                            <button class="btn btn-primary js-btn-prev" type="button"
+                                                title="Prev">Prev</button>
+                                            <button class="btn btn-primary ml-auto js-btn-next" type="button"
+                                                title="Next">Next</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--single form panel-->
+                            <div class="multisteps-form__panel shadow p-4 rounded bg-white" data-animation="scaleIn">
+                                <h3 class="multisteps-form__title">Select Garages Nearby</h3>
+                                <div class="multisteps-form__content">
+                                    <div class="d-flex">
+                                        <div class="p-2 pt-4">
+                                            <input type="checkbox" id="myCheckbox1" />
+                                        </div>
+                                        <div class="p-2">
+                                            <label for="myCheckbox1"><img class="img-fluid"
+                                                    src="assets/images/black.png"
+                                                    style="height:70px;width:70px" /></label>
+                                        </div>
+                                        <div class="p-2">
+                                            <h5>Garage 1</h5>
+                                            <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
+                                                aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i
+                                                class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="p-0 pt-5">
+                                            <small>delivery charge: 50rs</small>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="p-2 pt-4">
+                                            <input type="checkbox" id="myCheckbox1" />
+                                        </div>
+                                        <div class="p-2">
+                                            <label for="myCheckbox1"><img class="img-fluid"
+                                                    src="assets/images/black.png"
+                                                    style="height:70px;width:70px" /></label>
+                                        </div>
+                                        <div class="p-2">
+                                            <h5>Garage 1</h5>
+                                            <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
+                                                aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i
+                                                class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="p-0 pt-5">
+                                            <small>delivery charge: 50rs</small>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="p-2 pt-4">
+                                            <input type="checkbox" id="myCheckbox1" />
+                                        </div>
+                                        <div class="p-2">
+                                            <label for="myCheckbox1"><img class="img-fluid"
+                                                    src="assets/images/black.png"
+                                                    style="height:70px;width:70px" /></label>
+                                        </div>
+                                        <div class="p-2">
+                                            <h5>Garage 1</h5>
+                                            <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
+                                                aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i
+                                                class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="p-0 pt-5">
+                                            <small>delivery charge: 50rs</small>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="p-2 pt-4">
+                                            <input type="checkbox" id="myCheckbox1" />
+                                        </div>
+                                        <div class="p-2">
+                                            <label for="myCheckbox1"><img class="img-fluid"
+                                                    src="assets/images/black.png"
+                                                    style="height:70px;width:70px" /></label>
+                                        </div>
+                                        <div class="p-2">
+                                            <h5>Garage 1</h5>
+                                            <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
+                                                aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i
+                                                class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="p-0 pt-5">
+                                            <small>delivery charge: 50rs</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="button-row d-flex mt-4 col-12">
+
+                                        <button class="btn btn-danger ml-auto js-btn-next" type="button"
+                                            title="Next">Place order</button>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- Page Content -->
+    <div class="w3-overlay w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+<script>
+    function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("myOverlay").style.display = "block";
+    }
+
+    function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("myOverlay").style.display = "none";
+    }
+    //DOM elements
+    const DOMstrings = {
+        stepsBtnClass: 'multisteps-form__progress-btn',
+        stepsBtns: document.querySelectorAll(`.multisteps-form__progress-btn`),
+        stepsBar: document.querySelector('.multisteps-form__progress'),
+        stepsForm: document.querySelector('.multisteps-form__form'),
+        stepsFormTextareas: document.querySelectorAll('.multisteps-form__textarea'),
+        stepFormPanelClass: 'multisteps-form__panel',
+        stepFormPanels: document.querySelectorAll('.multisteps-form__panel'),
+        stepPrevBtnClass: 'js-btn-prev',
+        stepNextBtnClass: 'js-btn-next'
+    };
+
+
+    //remove class from a set of items
+    const removeClasses = (elemSet, className) => {
+
+        elemSet.forEach(elem => {
+
+            elem.classList.remove(className);
+
+        });
+
+    };
+
+    //return exect parent node of the element
+    const findParent = (elem, parentClass) => {
+
+        let currentNode = elem;
+
+        while (!currentNode.classList.contains(parentClass)) {
+            currentNode = currentNode.parentNode;
+        }
+
+        return currentNode;
+
+    };
+
+    //get active button step number
+    const getActiveStep = elem => {
+        return Array.from(DOMstrings.stepsBtns).indexOf(elem);
+    };
+
+    //set all steps before clicked (and clicked too) to active
+    const setActiveStep = activeStepNum => {
+
+        //remove active state from all the state
+        removeClasses(DOMstrings.stepsBtns, 'js-active');
+
+        //set picked items to active
+        DOMstrings.stepsBtns.forEach((elem, index) => {
+
+            if (index <= activeStepNum) {
+                elem.classList.add('js-active');
+            }
+
+        });
+    };
+
+    //get active panel
+    const getActivePanel = () => {
+
+        let activePanel;
+
+        DOMstrings.stepFormPanels.forEach(elem => {
+
+            if (elem.classList.contains('js-active')) {
+
+                activePanel = elem;
+
+            }
+
+        });
+
+        return activePanel;
+
+    };
+
+    //open active panel (and close unactive panels)
+    const setActivePanel = activePanelNum => {
+
+        //remove active class from all the panels
+        removeClasses(DOMstrings.stepFormPanels, 'js-active');
+
+        //show active panel
+        DOMstrings.stepFormPanels.forEach((elem, index) => {
+            if (index === activePanelNum) {
+
+                elem.classList.add('js-active');
+
+                setFormHeight(elem);
+
+            }
+        });
+
+    };
+
+    //set form height equal to current panel height
+    const formHeight = activePanel => {
+
+        const activePanelHeight = activePanel.offsetHeight;
+
+        DOMstrings.stepsForm.style.height = `${activePanelHeight}px`;
+
+    };
+
+    const setFormHeight = () => {
+        const activePanel = getActivePanel();
+
+        formHeight(activePanel);
+    };
+
+    //STEPS BAR CLICK FUNCTION
+    DOMstrings.stepsBar.addEventListener('click', e => {
+
+        //check if click target is a step button
+        const eventTarget = e.target;
+
+        if (!eventTarget.classList.contains(`${DOMstrings.stepsBtnClass}`)) {
+            return;
+        }
+
+        //get active button step number
+        const activeStep = getActiveStep(eventTarget);
+
+        //set all steps before clicked (and clicked too) to active
+        setActiveStep(activeStep);
+
+        //open active panel
+        setActivePanel(activeStep);
+    });
+
+    //PREV/NEXT BTNS CLICK
+    DOMstrings.stepsForm.addEventListener('click', e => {
+
+        const eventTarget = e.target;
+
+        //check if we clicked on `PREV` or NEXT` buttons
+        if (!(eventTarget.classList.contains(`${DOMstrings.stepPrevBtnClass}`) || eventTarget.classList.contains(`${DOMstrings.stepNextBtnClass}`))) {
+            return;
+        }
+
+        //find active panel
+        const activePanel = findParent(eventTarget, `${DOMstrings.stepFormPanelClass}`);
+
+        let activePanelNum = Array.from(DOMstrings.stepFormPanels).indexOf(activePanel);
+
+        //set active step and active panel onclick
+        if (eventTarget.classList.contains(`${DOMstrings.stepPrevBtnClass}`)) {
+            activePanelNum--;
+
+        } else {
+
+            activePanelNum++;
+
+        }
+
+        setActiveStep(activePanelNum);
+        setActivePanel(activePanelNum);
+
+    });
+
+    //SETTING PROPER FORM HEIGHT ONLOAD
+    window.addEventListener('load', setFormHeight, false);
+
+    //SETTING PROPER FORM HEIGHT ONRESIZE
+    window.addEventListener('resize', setFormHeight, false);
+
+    //changing animation via animation select !!!YOU DON'T NEED THIS CODE (if you want to change animation type, just change form panels data-attr)
+
+    const setAnimationType = newType => {
+        DOMstrings.stepFormPanels.forEach(elem => {
+            elem.dataset.animation = newType;
+        });
+    };
+
+    //selector onchange - changing animation
+    const animationSelect = document.querySelector('.pick-animation__select');
+
+    animationSelect.addEventListener('change', () => {
+        const newAnimationType = animationSelect.value;
+
+        setAnimationType(newAnimationType);
+    });
+</script>
+
+</html>
